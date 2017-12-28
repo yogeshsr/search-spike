@@ -1,0 +1,60 @@
+{
+  "mappings": {
+    "doc": { 
+      "properties": {
+        "sponsor":  { "type": "text", "analyzer": "voucher_analyzer", "search_analyzer": "voucher_search_analyzer"  }, 
+        "title":    { "type": "text", "analyzer": "voucher_analyzer", "search_analyzer": "voucher_search_analyzer"  }, 
+        "desc":     { "type": "text", "analyzer": "voucher_analyzer", "search_analyzer": "voucher_search_analyzer"  }
+      }
+    }
+  },
+
+  "settings": {
+    "analysis": {
+      "filter": {
+        "custom_stop": {
+          "type":        "stop",
+          "stopwords": [ "free" ]  
+        },
+        "english_stop": {
+          "type": "stop",
+          "stopwords": "_english_"
+        },
+        "search_filter": {
+          "type": "pattern_replace",
+          "pattern": "\\bgo",
+          "replacement": ""
+        }
+      },
+      "tokenizer": {
+        "autocomplete": {
+          "type": "edge_ngram",
+          "min_gram": 3,
+          "max_gram": 10,
+          "token_chars": [
+            "letter"
+          ]
+        }
+      },
+      "analyzer": {        
+        "voucher_search_analyzer": {
+          "type": "custom",
+          "tokenizer": "lowercase",
+          "filter": [
+            "search_filter"
+          ]
+        },        
+        "voucher_analyzer": {
+          "type": "custom",
+          "tokenizer": "autocomplete",
+          "filter": [ 
+            "lowercase",
+            "asciifolding",
+            "english_stop",
+            "custom_stop"
+          ]
+        }
+      }
+    }
+  }
+}

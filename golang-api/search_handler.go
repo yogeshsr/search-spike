@@ -22,7 +22,7 @@ type Tweet struct {
 	Suggest  *elastic.SuggestField `json:"suggest_field,omitempty"`
 }
 
-func main() {
+func main1() {
 	errorlog := log.New(os.Stdout, "APP ", log.LstdFlags)
 
 	// Obtain a client. You can also provide your own HTTP client here.

@@ -1,6 +1,36 @@
 version: "3"
 services:
   search-api:
-    build: .
+    build: ./golang-api/
     ports:
       - "8080:8080"
+    networks:
+      - app_net
+    restart: on-failure
+    depends_on:
+      - elasticsearch
+  search-web:
+    build: ./html-web-ui/
+    ports:
+      - "8000:8000"
+    networks:
+      - app_net
+    depends_on:
+      - search-api
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.1.1
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - app_net
+    ports:
+      - "9200:9200"
+networks:
+  app_net:
+    driver: bridge

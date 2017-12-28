@@ -2,14 +2,14 @@
 # and a workspace (GOPATH) configured at /go.
 FROM golang  as builder
 
-ADD . /go/src/github.com/yogeshsr/search-spike
+ADD . /go/src/golang-api
 
 RUN curl https://glide.sh/get | sh
 
-WORKDIR /go/src/github.com/yogeshsr/search-spike
+WORKDIR /go/src/golang-api
 RUN glide install
 RUN go build && go install
 
-ENTRYPOINT /go/bin/search-spike
+ENTRYPOINT /go/bin/golang-api
 
 EXPOSE 8080

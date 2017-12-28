@@ -1,0 +1,26 @@
+
+Reference
+https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-custom-analyzer.html
+
+Debuging
+
+POST voucher/_analyze
+{
+  "analyzer": "voucher_analyzer",
+  "text":     "Some test text"
+}
+To see search terms, change the analyzer to voucher_search_analyzer
+
+
+curl -H "Content-Type: application/json" -XPOST 'localhost:9200/voucher/doc/_bulk?pretty&refresh' --data-binary "@voucher-data.json"
+
+GET voucher/_search
+{
+  "query": {
+    "multi_match" : {
+      "query" : "some text",
+      "fields" : [ "sponsor^3", "title" ] 
+    }
+  }
+}
+

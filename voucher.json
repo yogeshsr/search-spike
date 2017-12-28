@@ -1,0 +1,4 @@
+{ "index" : { "_index" : "voucher", "_type" : "doc"} }
+{"sponsor":"first sponcer name", "title":"20% off over donuts"}
+{ "index" : { "_index" : "voucher", "_type" : "doc"} }
+{"sponsor":"second sponcer name", "title":"Get 100 off on your next piza"}

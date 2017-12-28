@@ -1,4 +1,3 @@
 .idea/**
-vendor/**
-virt_env/**
+**/vendor/**
 **/.DS_Store
