@@ -2,12 +2,15 @@
 # Dockerized - Search app using golang api server backed by Elasticsearch
 This is a demo search appliction. The search entity is voucher aka coupons.
 
-## Run the search app locally
+## Run the search app locally - standalone
 1. Install stable docker for mac from [docker-for-mac](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
 2. run docker-compose build
 3. run docker-compose up
 4. Follow section - create voucher index
 5. Visit voucher search http://localhost:8000/
+
+## Run docker cluster/swarm mode
+Follow [README-CLUSTER.md](./README-CLUSTER.md)
 
 ---
 ## Development mode
@@ -40,6 +43,24 @@ This is a demo search appliction. The search entity is voucher aka coupons.
 ### Tools
     Install chrome elasticsearch head to view the indexes
     Cancel user/passord dialog if displayed while viewing index after next step
+
+### Pushing to docker hub
+    docker login
+
+    cd golang-api
+    docker build -t golang-api .
+    docker images
+    docker tag golang-api yogeshsr/get-started:golang-api-1.0
+    docker push yogeshsr/get-started:golang-api-1.0
+
+    cd html-web-ui
+    docker build -t html-web-ui .
+    docker images
+    docker tag html-web-ui yogeshsr/get-started:html-web-ui-1.0
+    docker push yogeshsr/get-started:html-web-ui-1.0
+    
+    Note: html-web-ui-2.0 is pushed with serviceUrl to localhost in currency-autocomplete.js
+    Refer [README-CLUSTER.md](./README-CLUSTER.md)
 
 ### Notes
     about elastic public_host address

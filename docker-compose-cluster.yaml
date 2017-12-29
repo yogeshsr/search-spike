@@ -1,0 +1,51 @@
+version: "3"
+services:
+  search-api:
+    image: "yogeshsr/get-started:golang-api-1.0"
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8080:8080"
+    networks:
+      - webnet
+    restart: on-failure
+    depends_on:
+      - elasticsearch
+  search-web:
+    image: "yogeshsr/get-started:html-web-ui-1.0"
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8000:8000"
+    networks:
+      - webnet
+    depends_on:
+      - search-api
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.1.1
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - webnet
+    ports:
+      - "9200:9200"
+networks:
+  webnet:
