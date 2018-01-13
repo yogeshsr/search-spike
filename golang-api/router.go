@@ -3,24 +3,21 @@ package main
 import (
 	"net/http"
 	"github.com/gorilla/mux"
+	"github.com/olivere/elastic"
 )
 
-func NewRouter() *mux.Router {
+func Router() http.Handler {
+	rtr := mux.NewRouter()
+	client, _ := GetElasticClient()
 
-	router := mux.NewRouter().StrictSlash(true)
-	for _, route := range routes {
-		var handler http.Handler
-
-		handler = route.HandlerFunc
-		handler = Logger(handler, route.Name)
-
-		router.
-			Methods(route.Method).
-			Path(route.Pattern).
-			Name(route.Name).
-			Handler(handler)
-
-	}
-
-	return router
+	rtr = RouteMap(rtr, client)
+	return rtr
 }
+
+func RouteMap(mainRouter *mux.Router, client *elastic.Client) *mux.Router {
+
+	mainRouter.Handle("/", Index(client)).Methods("GET")
+
+	return mainRouter
+}
+

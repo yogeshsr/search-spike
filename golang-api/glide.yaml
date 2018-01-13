@@ -2,3 +2,5 @@ package: github.com/yogeshsr/search-spike
 import:
 - package: github.com/gorilla/mux
   version: ^1.6.0
+- package: github.com/codegangsta/negroni
+  version: ^0.3.0
