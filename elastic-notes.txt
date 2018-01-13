@@ -24,3 +24,17 @@ GET voucher/_search
   }
 }
 
+PUT /my_index
+standard analyzer with some custom configuration.
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "my_analyzer": { 
+          "type": "standard", 
+          "stopwords": [ "and", "the" ] 
+        }
+      }
+    }
+  }
+}
