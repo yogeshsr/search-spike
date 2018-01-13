@@ -29,6 +29,7 @@ Follow [README-CLUSTER.md](./README-CLUSTER.md)
     curl -H "Content-Type: application/json" -XDELETE 'localhost:9200/voucher/?pretty'
 
 ### run search api locally
+    change as elasticUrl := "http://localhost:9200"
     cd golang-api
     glide install
     go run *.go

@@ -7,14 +7,14 @@ import (
 	"github.com/gorilla/context"
 )
 
-func startServer(port string) {
-	router := Router()
+func startServer(port string, elasticUrl string) {
+	router := Router(elasticUrl)
 	server := negroni.New(negroni.NewRecovery())
 	server.UseHandler(context.ClearHandler(router))
 	server.Run(port)
 }
 
-func StartAPI(port string) {
+func StartAPI(port string, elasticUrl string) {
 	logrus.Info("Starting Points Proxy Service")
-	startServer(port)
+	startServer(port, elasticUrl)
 }

@@ -1,4 +1,4 @@
-package main
+package elasticsearch_api
 
 import (
 	"github.com/olivere/elastic"
@@ -16,15 +16,9 @@ type Voucher struct {
 	Desc    string `json:"description"`
 }
 
-func main2() {
-	client, _ := GetElasticClient()
-	VoucherSearch(client, "input")
-}
-
-func GetElasticClient() (*elastic.Client, error) {
+func GetElasticClient(elasticUrl string) (*elastic.Client, error) {
 	errorlog := log.New(os.Stdout, "APP ", log.LstdFlags)
 	// see details- https://docs.docker.com/compose/networking/
-	elasticUrl := "http://elasticsearch:9200"
 	client, err := elastic.NewSimpleClient(elastic.SetErrorLog(errorlog), elastic.SetURL(elasticUrl))
 	if err != nil {
 		panic(err)
