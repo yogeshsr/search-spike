@@ -8,7 +8,7 @@ import (
 
 func Router() http.Handler {
 	rtr := mux.NewRouter()
-	db := GetConncetion()
+	db := GetConnection()
 	db.SetMaxOpenConns(0)
 	db.SetMaxIdleConns(10)
 

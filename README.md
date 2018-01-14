@@ -4,10 +4,18 @@ This is a demo search appliction. The search entity is voucher aka coupons.
 
 ## Run the search app locally - standalone
 1. Install stable docker for mac from [docker-for-mac](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
-2. run docker-compose build
-3. run docker-compose up
-4. Follow section - create voucher index
-5. Visit voucher search http://localhost:8000/
+
+### run elastic backed 
+1. run docker-compose build
+2. run docker-compose up
+3. Follow section - create voucher index
+4. Visit voucher search http://localhost:8000/
+
+### run postgres backed
+1. run docker-compose -f docker-compose-postgres.yaml build
+2. run docker-compose -f docker-compose-postgres.yaml up
+3. //TODO adding data
+4. Visit voucher search http://localhost:8000/
 
 ## Run docker cluster/swarm mode
 Follow [README-CLUSTER.md](./README-CLUSTER.md)
