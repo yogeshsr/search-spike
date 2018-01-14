@@ -2,11 +2,11 @@
 # and a workspace (GOPATH) configured at /go.
 FROM golang  as builder
 
-ADD . /go/src/golang-api
+ADD . /go/src/github.com/yogeshsr/search-spike/golang-api
 
 RUN curl https://glide.sh/get | sh
 
-WORKDIR /go/src/golang-api
+WORKDIR /go/src/github.com/yogeshsr/search-spike/golang-api
 RUN glide install
 RUN go build && go install
 
