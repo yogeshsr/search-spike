@@ -1,12 +1,22 @@
-hash: 1e92510104b35af9ac6e6760946b5f89e4e50d9128a77290e381a3efd413537a
-updated: 2018-01-13T21:05:20.718716212+05:30
+hash: ef6dd035e7f08ee356d917e900d4bf6f9d12d9af02c9e3edda0cc42ebc493d69
+updated: 2018-01-14T08:44:21.074441297+05:30
 imports:
+- name: github.com/alecthomas/template
+  version: a0175ee3bccc567396460bf5acd36800cb10c49c
+  subpackages:
+  - parse
+- name: github.com/alecthomas/units
+  version: 2efee857e7cfd4f3d0138cc3cbb1b4966962b93a
 - name: github.com/codegangsta/negroni
   version: 5dbbc83f748fc3ad38585842b0aedab546d0ea1e
 - name: github.com/gorilla/context
   version: 1ea25387ff6f684839d82767c1733ff4d4d15d0a
 - name: github.com/gorilla/mux
   version: 7f08801859139f86dfafd1c296e2cba9a80d292e
+- name: github.com/lib/pq
+  version: ae8357db35d721c58dcdc911318b55bef6b1b001
+  subpackages:
+  - oid
 - name: github.com/olivere/elastic
   version: 7a065d53ac847c9aba9385e84fa24ef4647a6ae2
   subpackages:
@@ -14,4 +24,16 @@ imports:
   - uritemplates
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
+- name: github.com/sirupsen/logrus
+  version: d682213848ed68c0a260ca37d6dd5ace8423f5ba
+- name: golang.org/x/crypto
+  version: 6318898455d3ac20e7e44d0a080d43f8c3ff120b
+  subpackages:
+  - ssh/terminal
+- name: golang.org/x/sys
+  version: bb24a47a89eac6c1227fbcb2ae37a8b9ed323366
+  subpackages:
+  - unix
+- name: gopkg.in/alecthomas/kingpin.v2
+  version: 947dcec5ba9c011838740e680966fd7087a71d0d
 testImports: []

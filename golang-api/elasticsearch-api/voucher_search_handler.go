@@ -8,13 +8,8 @@ import (
 	"log"
 	"os"
 	"errors"
+	"github.com/yogeshsr/search-spike/golang-api/models"
 )
-
-type Voucher struct {
-	Sponsor string `json:"sponsor"`
-	Title   string `json:"title"`
-	Desc    string `json:"description"`
-}
 
 func GetElasticClient(elasticUrl string) (*elastic.Client, error) {
 	errorlog := log.New(os.Stdout, "APP ", log.LstdFlags)
@@ -55,7 +50,7 @@ func GetElasticClient(elasticUrl string) (*elastic.Client, error) {
 	return nil, errors.New("Failed to establish Elasticsearch connection")
 }
 
-func VoucherSearch(client *elastic.Client, searchText string) ([]Voucher) {
+func VoucherSearch(client *elastic.Client, searchText string) ([]models.Voucher) {
 	// Search with a term query
 	multiMatchQuery := elastic.NewMultiMatchQuery(searchText, "sponsor^3", "title")
 	searchResult, err := client.Search().
@@ -71,10 +66,10 @@ func VoucherSearch(client *elastic.Client, searchText string) ([]Voucher) {
 
 	fmt.Printf("Query took %d milliseconds\n", searchResult.TookInMillis)
 
-	var voucher Voucher
-	var vouchers[] Voucher
+	var voucher models.Voucher
+	var vouchers[] models.Voucher
 	for _, item := range searchResult.Each(reflect.TypeOf(voucher)) {
-		t := item.(Voucher)
+		t := item.(models.Voucher)
 		fmt.Printf("Voucher by %s | %s\n", t.Sponsor, t.Title)
 		vouchers = append(vouchers, t)
 	}

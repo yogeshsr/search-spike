@@ -4,3 +4,6 @@ import:
   version: ^1.6.0
 - package: github.com/codegangsta/negroni
   version: ^0.3.0
+- package: gopkg.in/alecthomas/kingpin.v2
+  version: ^2.2.6
+- package: github.com/lib/pq
