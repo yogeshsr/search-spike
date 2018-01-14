@@ -60,7 +60,9 @@ Follow [README-CLUSTER.md](./README-CLUSTER.md)
     docker tag html-web-ui yogeshsr/get-started:html-web-ui-1.0
     docker push yogeshsr/get-started:html-web-ui-1.0
     
-    Note: html-web-ui-2.0 is pushed with serviceUrl to localhost in currency-autocomplete.js
+    Note:
+    html-web-ui-2.0 is pushed with serviceUrl to localhost in currency-autocomplete.js
+    localhost is used in local non-cluster env. 
     Refer [README-CLUSTER.md](./README-CLUSTER.md)
 
 ### Notes

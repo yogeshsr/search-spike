@@ -3,6 +3,7 @@ package main
 import (
 	"gopkg.in/alecthomas/kingpin.v2"
 	"log"
+	"os"
 )
 
 var (
@@ -15,7 +16,15 @@ func main() {
 
 	port := ":8080"
 
-	switch kingpin.Parse() {
+	// cmd line mode will have precedence over env defined
+
+	cmdLineMode := kingpin.Parse()
+	mode := ""
+	if cmdLineMode == "" {
+		mode = os.Getenv("mode")
+	}
+
+	switch mode {
 		case "startPG":
 			StartPGAPI(port)
 		default:
