@@ -47,7 +47,8 @@ func GetElasticClient(elasticUrl string) (*elastic.Client, error) {
 	}
 	fmt.Printf("connection failed\n")
 
-	return nil, errors.New("Failed to establish Elasticsearch connection")
+	// sending client also since the index might be created later
+	return client, errors.New("Failed to establish Elasticsearch connection")
 }
 
 func VoucherSearch(client *elastic.Client, searchText string) ([]models.Voucher) {

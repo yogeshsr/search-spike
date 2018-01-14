@@ -10,6 +10,6 @@ WORKDIR /go/src/github.com/yogeshsr/search-spike/golang-api
 RUN glide install
 RUN go build && go install
 
-ENTRYPOINT /go/bin/golang-api
+#ENTRYPOINT /go/bin/golang-api
 
 EXPOSE 8080

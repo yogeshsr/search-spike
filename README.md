@@ -29,7 +29,7 @@ Follow [README-CLUSTER.md](./README-CLUSTER.md)
     curl -H "Content-Type: application/json" -XDELETE 'localhost:9200/voucher/?pretty'
 
 ### run search api locally
-    change as elasticUrl := "http://localhost:9200"
+    main.go, change to elasticUrl := "http://localhost:9200"
     cd golang-api
     glide install
     go run *.go
@@ -62,12 +62,16 @@ Follow [README-CLUSTER.md](./README-CLUSTER.md)
     
     Note:
     html-web-ui-2.0 is pushed with serviceUrl to localhost in currency-autocomplete.js
-    localhost is used in local non-cluster env. 
-    Refer [README-CLUSTER.md](./README-CLUSTER.md)
+    localhost is used in dev and by compose. Refer [README-CLUSTER.md](./README-CLUSTER.md)
+
+    For compose and swarm mode,
+    elasticUrl := "http://elasticsearch:9200"
+    since elastic will allow connection to this public_host address
+    https://github.com/olivere/elastic/wiki/Docker
 
 ### Notes
-    about elastic public_host address
-    https://github.com/olivere/elastic/wiki/Docker
+    'connection failed' logged during api startup since elactic don't have voucher index.
+    Create the index as described above curl commands
 
     Stop, build & start. Needed when golang code is changed.
     docker-compose down

@@ -9,6 +9,7 @@ services:
     restart: on-failure
     depends_on:
       - elasticsearch
+    command: ["./wait-for-it.sh", "elasticsearch:9200", "--timeout=30", "--", "/go/bin/golang-api"]
   search-web:
     build: ./html-web-ui/
     ports:
